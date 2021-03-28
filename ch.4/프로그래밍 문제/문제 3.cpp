@@ -19,22 +19,16 @@ int main() {
 
 	total = ipower(n, k);
 
-	cout << total << endl << endl;
+	cout << n << "의 " << k << "승 = " << total << endl << endl;
 
 	n = 3;
 	k = 0;
 
-	for (k = 0; k <= 4; k++) {
-		cout << "3^" << k << " = " << pow(n, k)<<"  ";
+	for (k = 0; k <= 10; k++) {
+		cout << "3의 " << k << "승 = " << pow(n, k) <<endl;
 	}
 	cout << "\n";
 
-	for (k = 5; k <= 9; k++) {
-		cout << "3^" << k << " = " << pow(n, k) << "  ";
-	}
-	cout << "\n";
-
-	cout << "3^10 = " << pow(n, 10)<<endl;
 
 	return 0;
 }
