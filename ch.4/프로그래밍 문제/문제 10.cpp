@@ -4,6 +4,7 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 bool get_menu_number(int num);
 int print_menu();
 void receive_menu(int num);
@@ -18,6 +19,28 @@ int main() {
 			break; // 반복문 탈출
 	}
 
+=======
+int get_menu_number(int num);
+int print_menu();
+
+int main() {
+
+	int num, judge_num;
+
+	num = print_menu();
+	judge_num = get_menu_number(num);
+
+	if (get_menu_number(num != 2)) {
+		cout << "잘못된 메뉴를 선택하셨습니다. 다시 선택해주세요." << endl;
+		print_menu();
+	}
+	else {
+		
+	}
+
+		
+
+>>>>>>> b2b7698f11acde4a263e9f2299367502edaecfaf
 	return 0;
 }
 
@@ -32,6 +55,7 @@ int print_menu() {
 	cout << "원하는 메뉴를 선택하시오. : ";
 	cin >> n;
 
+<<<<<<< HEAD
 	return n; // 메뉴 번호를 입력받고 그에 맞는 번호 출력
 }
 
@@ -58,5 +82,15 @@ void receive_menu(int num) { // 1부터 4까지 메뉴에 해당하는 문구 �
 	}
 	if (num == 4) {
 		cout << "종료" << endl;
+=======
+	return n;
+
+}
+
+int get_menu_number(int num) {
+
+	if (num >= 1 && num <= 4) {
+		return 2;
+>>>>>>> b2b7698f11acde4a263e9f2299367502edaecfaf
 	}
 }

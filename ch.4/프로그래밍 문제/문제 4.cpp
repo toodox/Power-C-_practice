@@ -24,7 +24,11 @@ int main() {
 	cout << "y2좌표 입력 : ";
 	cin >> y2;
 
+<<<<<<< HEAD
 	d = dist_2d(x1, y1, x2, y2); //두 점 사이의 거리를 구하는 함수 리턴값을 d에 대입
+=======
+	d = dist_2d(x1, y1, x2, y2);
+>>>>>>> b2b7698f11acde4a263e9f2299367502edaecfaf
 
 	cout << "두 점 사이의 거리 : " << d << endl;
 
@@ -32,10 +36,18 @@ int main() {
 	return 0;
 }
 
+<<<<<<< HEAD
 double dist_2d(double x1, double y1, double x2, double y2) { //두 점 사이의 거리 구하는 함수
 	
 	int dist_x = pow((x2 - x1),2); // (x2-x1)^2
 	int dist_y = pow((y2 - y1),2); // (y2-y2)^2
 	return sqrt(dist_x + dist_y); // 루트 값 씌워서 리턴
+=======
+double dist_2d(double x1, double y1, double x2, double y2) {
+	
+	int dist_x = pow((x2 - x1),2);
+	int dist_y = pow((y2 - y1),2);
+	return sqrt(dist_x + dist_y);
+>>>>>>> b2b7698f11acde4a263e9f2299367502edaecfaf
 
 }
