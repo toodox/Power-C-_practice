@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+private:
+	string last;
+	string first;
+public:
+
+	Person(string last, string first);
+
+	string getLast() {
+		return last;
+	}
+	string getFirst() {
+		return first;
+	}
+	string buildName();
+};
+
+Person::Person(string last, string first) {
+	this->last = last;
+	this->first = first;
+}
+
+string Person::buildName() {
+	return this->getLast() + getFirst();
+}
+
+int main() {
+
+	Person p1("Hong", "Gildong");
+	cout << p1.buildName() << endl;
+
+	Person p2("Jang", "Junho");
+	cout << p2.buildName() << endl;
+
+	return 0;
+}
