@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car {
+private:
+	int speed, gear;
+	string color;
+public:
+	Car(int speed = 0, int gear = 1, string color = "white") {
+		this->speed = speed;
+		this->gear = gear;
+		this->color = color;
+	}
+	void display();
+};
+
+void Car::display() {
+	cout << "Speed : " << speed << ", Gear : " << this->gear << ", Color : " << this->color << endl;
+}
+
+int main() {
+	Car myCar;
+	myCar.display();
+	cout << sizeof(myCar) << endl;
+
+	Car* pCar = &myCar;
+	pCar->display();
+	cout << sizeof(pCar) << endl;
+	cout << sizeof(*pCar) << endl;
+
+	pCar = new Car(100, 3, "blue");
+	pCar->display();
+
+	delete pCar;
+
+	return 0;
+}
