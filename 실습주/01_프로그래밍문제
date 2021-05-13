@@ -1,0 +1,102 @@
+//564페이지 문제 6번
+
+#include <iostream>
+
+using namespace std;
+
+class Shape {
+private:
+	int x;
+	int y;
+public:
+
+
+	Shape(int a, int b) {
+		x = a;
+		y = b;
+		cout << "Shape 생성자" << endl;
+	}
+
+	~Shape() {
+		cout << "Shape 소멸자" << endl;
+	}
+
+	/*
+	setter, getter
+
+			int setX(int a) {
+			return x;
+			}
+			int getX(int a) {
+				this->x = a;
+			}
+			int setY(int b) {
+				return y;
+			}
+			int getY(int b) {
+				this->y = b;
+			}
+	*/
+
+
+	void print() {
+		cout << "x좌표 >" << x << endl;
+		cout << "y좌표 >" << y << endl;
+	}
+
+};
+
+class Rectangle :public Shape {
+private:
+	int width;
+	int height;
+public:
+
+	Rectangle(int x, int y, int w, int h) :Shape(x, y) {
+		width = w;
+		height = h;
+		cout << "Rectangle 생성자" << endl;
+	}
+
+	~Rectangle() {
+		cout << "Rectangle 소멸자" << endl;
+	}
+
+	int getArea()
+	{
+		return width * height;
+	}
+
+	void print() {
+		Shape::print();
+		cout << "가로> " <<width<<"세로> "<<height<< endl;
+	}
+
+	bool isLarger(Rectangle rec) {
+		if (getArea() > rec.getArea()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+};
+
+int main() {
+
+	Rectangle r1(10, 10, 100, 100);
+	cout << r1.getArea() << endl;
+	r1.print();
+
+	Rectangle r2(20, 20, 100, 100);
+	cout << r2.getArea() << endl;
+	r2.print();
+
+	if (r1.isLarger(r2))
+		cout << "r1 is bigger\n";
+	else
+		cout << "r2 is bigger\n";
+
+	return 0;
+}
