@@ -1,0 +1,65 @@
+// const key word 사용법
+
+#include <iostream>
+
+using namespace std;
+
+class ConstTest {
+	const int MAXSPEED;
+	int speed;
+public:
+	ConstTest(int s, int m) : MAXSPEED(m) { // 콜론 초기화 사용 가능
+		// MAXSPEED = m; ->불가능
+		speed = s;
+		cout << getSpeed() << endl;
+		print();
+	}
+
+	void print() const {
+		cout << speed << ", " << MAXSPEED << endl;
+		//	speed = 20;
+		//	setSpeed(100);		// const 함수는 const가 아닌 함수 호출 불가
+	}
+
+	void setSpeed(const int s) {
+		speed = s;
+		// s= 200;
+	}
+
+	int getSpeed() {
+		return speed;
+	}
+
+	int getSpeed() const {
+		cout << "const 멤버함수" << endl;
+		return speed;
+	}
+};
+
+
+int main() {
+
+	ConstTest obj1(10, 100);
+	obj1.print();
+	cout << obj1.getSpeed() << endl;
+
+	const ConstTest obj2(20, 200); // const 객체 선언
+	obj2.print();
+
+	cout << obj2.getSpeed() << endl;
+
+
+	return 0;
+}
+
+
+/*
+<정리>
+1. const 멤버 함수는 객체의 멤버 변수를 수정 불가
+2. const 멤버 함수는 const가 아닌 멤버 함수 호출 불가
+3. const 객체는 const 멤버 함수만호출 가능
+4. 일반 멤버 함수는 const함수로 오버로딩 가능
+5. 생성자, 소멸자는 const 불가
+6. 생성자는 const, non-const 멤버 함수 호출 가능
+7. const객체는 멤버 변수 변경이 불가하기 때문에 반드시 초기화 되어야 한다.
+*/
