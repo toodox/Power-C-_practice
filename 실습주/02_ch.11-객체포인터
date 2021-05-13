@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car {
+private:
+	int speed, gear;
+	string color;
+public:
+	Car(int s = 0, int g = 1, string c = "white") : speed(s), gear(g), color(c) {
+	}	 // 디폴트 매개변수, 콜론 초기화 사용
+	void display();
+};
+
+void Car::display() {
+	cout << "Speed : " << speed << ", Gear : " << gear << ", Color : " << color << endl;
+}
+
+int main() {
+	Car myCar;
+	myCar.display();
+	cout << sizeof(myCar) << endl;
+
+	Car* pCar = &myCar;
+	pCar->display();
+	cout << sizeof(pCar) << endl;
+	cout << sizeof(*pCar) << endl;
+
+	pCar = new Car(100, 3, "blue");
+	pCar->display();
+
+	delete pCar;
+
+	return 0;
+}
