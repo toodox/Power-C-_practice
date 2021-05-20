@@ -1,0 +1,31 @@
+// 전역함수를 friend로 지정하는 경우
+// friend 함수는 클래스의 모든 멤버에 접근할 수 있다.
+// friend 함수는 위치에 관계없이 public이나 private의 영향을 받지 않는다.
+// 멤버 함수가 아닌 전역함수이기 때문이다.
+
+#include <iostream>
+
+using namespace std;
+
+class Company {
+	int sales, profit;
+	friend void print(Company& c); // 멤버 함수가 아닌 전역 함수
+public:
+	Company(int s = 0, int p = 0) : sales(s), profit(p) {
+	}
+};
+
+void print(Company& c) {
+	cout << c.sales << ", " << c.profit << endl;
+}
+
+int main() {
+
+	Company company;
+	print(company);
+
+	return 0;
+}
+
+
+// 그냥 이런게 있다~ 정도만 알면 됨 (friend, protected 잘 사용 안함)
