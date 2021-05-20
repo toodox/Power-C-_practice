@@ -1,0 +1,59 @@
+/*
+클래스의 멤버로 다른 클래스의 객체를 포함하는 경우
+has-a 관계
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Time {
+	int hour, min, sec;
+public:
+	Time(int h = 0, int m = 0, int s = 0) : hour(h), min(m), sec(s) {
+		cout << "생성자 호출" << endl;
+	}
+	void print() {
+		cout << hour << "시 " << min << "분 " << sec << " 초" << endl;
+	}
+};
+
+class AlarmClock {
+	Time current, alarm;
+public:
+	AlarmClock(Time c, Time a) { // 콜론 초기화 하지 않는 경우 반드시 디폴트 생성자 필요
+		current = c;
+		alarm = a;
+	}
+
+	AlarmClock(int h, int m, int s, Time a) : current(h, m, s) {
+		alarm = a;
+		// current(h,m,s): //포함 객체는 반드시 콜론 초기화로 객체 생성
+	}
+	AlarmClock(int h, int m, int s, int h1, int m1, int s1) : current(h, m, s), alarm(h1, m1, s1) {
+	}
+	void print() {
+		cout << "Current Time : ";
+		current.print();
+		cout << "Alarm Time : ";
+		alarm.print();
+	}
+};
+
+int main() {
+
+	Time alarm(6, 0, 0);
+	Time current(12, 56, 34);
+
+	AlarmClock alarm_clock(current, alarm);
+	alarm_clock.print();
+
+	AlarmClock test1(10, 5, 10, alarm);
+	test1.print();
+
+	AlarmClock test2(10, 5, 10, 20, 10, 20);
+	test2.print();
+
+	return 0;
+
+}

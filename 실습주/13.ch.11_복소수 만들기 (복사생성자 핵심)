@@ -1,0 +1,53 @@
+// 복소수 만들기 - 복사생성자 활용
+
+#include <iostream>
+
+using namespace std;
+
+class Complex {
+	double real, img;
+public:
+
+	Complex() : real(0), img(0) {
+		cout << "default 생성자\n";
+	}
+
+	Complex(double r , double i ) : real(r), img(i) {
+		cout << "매개변수 있는 생성자\n";
+	}
+
+	Complex(const Complex& obj) {
+		cout << "복사 생성자\n";
+		real = obj.real;
+		img = obj.img;
+	}
+
+	~Complex() {
+		cout << "소멸자\n";
+	}
+
+	Complex add(const Complex& obj) {
+		Complex temp;													// temp는 지역객체 -> 함수가 끝나면 소멸됨
+		temp.real = this->real + obj.real;
+		temp.img = this->img + obj.img;
+
+		return temp;													// 객체를 리턴하는 경우는 복사생성자로 호출해야 함.
+	}
+
+	void print() const {
+		cout << real << " + " << img << "i" << endl;
+	}
+};
+
+int main() {
+
+	Complex c1(2, 3), c2(4, 6), c3;
+
+	c1.print();
+	c2.print();
+	c3 = c1.add(c2);													// add함수 끝나면 c1, c2 소멸됨. , c3(복사 생성자 호출)
+	c3.print();
+	// c1, c2, c3 소멸됨
+
+	return 0;
+}

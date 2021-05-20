@@ -1,0 +1,54 @@
+// static 변수 예제 - 소멸자
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car {
+	int speed, gear, id;																										// id에 객체마다 고유번호를 주려고 한다.
+	string color;
+	static int numCars;
+public:
+	Car(int s = 0, int g = 1, string c = "white") : speed(s), gear(g), color(c) {
+		id = ++numCars;
+	}
+
+	void display() {
+		cout << this->speed << ", " << gear << ", " << color << ", " << id << endl;
+		cout << numCars << endl;
+		cout << getNumCars() << endl;	
+	}
+	static int getNumCars() {
+		return numCars;
+	}
+	~Car() {
+		numCars--;;
+		cout << "-------------------------------------" << endl;
+		cout << "소멸 차량 : " << this->color << ", " << "남은 차량 : " << numCars << endl;
+	}
+};
+
+int Car::numCars = 0;																											
+int main() {
+
+	cout << "Car number : " << Car::getNumCars() << endl;																		
+
+	printf("---------------------------------------\n");
+
+	Car myCar;																													
+
+	cout << "Car number : " << myCar.getNumCars() << endl;																		
+	cout << "# My Car" << endl;
+	myCar.display();
+
+	printf("---------------------------------------\n");
+
+	Car yourCar(100, 3, "black");																								
+
+	cout << "Car number : " << Car::getNumCars() << endl;
+	cout << "# Your Car" << endl;
+	yourCar.display();
+	return 0;
+}
+

@@ -1,0 +1,65 @@
+/*
+모든 객체(object, instance)는 자기만의 멤버변수를 갖는다. (instance 변수, 멤버변수)
+static 변수는 모든 객체가 공유하는 변수이다.
+일반 멤버변수는 객체가 생성되어야 존재한다.
+static변수나 함수는 객체 생성 이전에 생성된다 (중요)
+*/
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car {
+	int speed, gear, id;																										// id에 객체마다 고유번호를 주려고 한다.
+	string color;
+	static int numCars;
+public:
+	Car(int s = 0, int g = 1, string c = "white") : speed(s), gear(g), color(c) {
+		id = ++numCars;
+	}
+
+	void display() {
+		cout << this->speed << ", " << gear << ", " << color << ", " << id << endl;
+		cout << numCars << endl;
+		cout << getNumCars() << endl;	// 일반 멤버함수는 static 변수나 함수 호출 가능
+	}
+
+	static int getNumCars() { // static 함수는 일반 멤버함수나 멤버변수 호출 불가능
+		// display(); -- 안됨
+		// speed = 100;	-- 안됨
+		return numCars;
+	}
+};
+
+int Car::numCars = 0;																											// static 변수는 반드시 클래스 외부에서 초기화
+
+int main() {
+
+	cout << "Car number : " << Car::getNumCars() << endl;																		// static 함수도 객체와 무관하게 사용 가능 (클래스 이름으로 호출)
+
+	printf("---------------------------------------\n");
+
+	Car myCar;																													// Car 클래스 myCar 선언
+
+	cout << "Car number : " << myCar.getNumCars() << endl;																		// static 함수는 객체의 이름으로 사용 가능 (사용하지 않는다)
+	// cout << myCar::numCars << endl;
+	// static 변수나 함수는 객체가 생성되면 객체이름으로도 호츨 가능 (사용하지 않는다)
+	cout << "# My Car" << endl;
+	myCar.display();
+
+	printf("---------------------------------------\n");
+
+	Car yourCar(100, 3, "black");																								// Car 클래스 yourCar 선언
+
+	cout << "Car number : " << Car::getNumCars() << endl;
+	cout << "# Your Car" << endl;
+	yourCar.display();
+	return 0;
+}
+
+// static 함수는 static 변수와 함수에만 접근 가능
+// 멤버 변수와 멤버 함수는 객체가 생성되어야 존재하기 때문
+// static 함수는 this 사용 불가 (객체와 무관히기 때문)
+// 그러나 일반 멤버 함수는 static 변수와 함수에 접근 가능
+// 생성 시기가 다르기 때문임 (중요한 개념)

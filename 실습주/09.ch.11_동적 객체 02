@@ -1,0 +1,50 @@
+// 485쪽 Exercise 문제
+
+#include <iostream>
+
+using namespace std;
+
+class Point {
+	int x, y;
+public:
+	Point(int ax = 0, int ay = 0) : x(ax), y(ay) {
+	}
+	void setX(int ax) {
+		x = ax;
+	}
+	void setY(int ay) {
+		y = ay;
+	}
+	~Point() {
+		cout << "Destructor call\n";
+	}
+	void print() {
+		cout << "X : " << x << " / Y : " << y << endl;
+	}
+};
+
+int main() {
+
+	Point* p1 = new Point(100, 200);
+	Point* p2 = new Point();
+	p2->setX(30);
+	p2->setY(60);
+	delete p2;
+
+	cout << endl;
+
+	Point* p3 = new Point();
+	p3->setX(30);
+	p3->setY(60);
+
+	cout << "p1 좌표 \n";
+	p1->print();
+	cout << endl;
+
+	cout << "p3 좌표 \n";
+	p3->print();
+	cout << endl;
+
+	delete p1;
+	delete p3;
+}

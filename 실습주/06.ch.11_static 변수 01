@@ -1,0 +1,51 @@
+/*
+모든 객체(object, instance)는 자기만의 멤버변수를 갖는다. (instance 변수, 멤버변수)
+static 변수는 모든 객체가 공유하는 변수이다.
+일반 멤버변수는 객체가 생성되어야 존재한다.
+static변수나 함수는 객체 생성 이전에 생성된다 (중요)
+*/
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car {
+	int speed, gear, id;																										// id에 객체마다 고유번호를 주려고 한다.
+	string color;
+public:
+	static int numCars;																											// private로 선언되지만 설명을 위해 public 선언
+	Car(int s = 0, int g = 1, string c = "white") : speed(s), gear(g), color(c) {
+		id = ++numCars;
+	}
+
+	void displays() {
+		cout <<"speed : "<< speed << ", gear : " << gear << ", color : " << color <<", id : "<<id<< endl;
+	}
+};
+
+int Car::numCars = 0;																											// static 변수는 반드시 클래스 외부에서 초기화
+
+int main() {
+
+	cout << "Car number : "<<Car::numCars << endl;
+
+	printf("---------------------------------------\n");
+
+	Car myCar;																													// Car 클래스 myCar 선언
+
+	cout << "Car number : " << Car::numCars << endl;
+		// cout << myCar::numCars << endl;
+		// static 변수나 함수는 객체가 생성되면 객체이름으로도 호츨 가능 (사용하지 않는다)
+	cout << "# My Car" << endl;
+	myCar.displays();
+
+	printf("---------------------------------------\n");
+	
+	Car yourCar(100, 3, "black");																								// Car 클래스 yourCar 선언
+
+	cout << "Car number : " << Car::numCars << endl;
+	cout << "# Your Car" << endl;
+	yourCar.displays();
+	return 0;
+}
